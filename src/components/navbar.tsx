@@ -13,6 +13,7 @@ import {
   NavbarMenuToggle,
   Navbar as NextUINavbar,
 } from "@nextui-org/react";
+import { IconPackage } from "@tabler/icons-react";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +33,8 @@ export function Navbar() {
     <NextUINavbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <IconPackage />
+          <p className="font-bold text-inherit">Next.js Starter</p>
         </NavbarBrand>
       </NavbarContent>
 
