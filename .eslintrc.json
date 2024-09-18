@@ -1,9 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
-  "plugins": ["check-file"],
+  "plugins": ["check-file", "n"],
   "rules": {
-    "prefer-arrow-callback": "error",
-    "prefer-template": "error",
     "check-file/filename-naming-convention": [
       "error",
       {
@@ -16,6 +14,9 @@
       {
         "src/**/!^[.*": "KEBAB_CASE"
       }
-    ]
+    ],
+    "n/no-process-env": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-template": "error"
   }
 }
