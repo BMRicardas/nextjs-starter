@@ -15,6 +15,8 @@ import {
 } from "@nextui-org/react";
 import { IconPackage } from "@tabler/icons-react";
 
+import { ThemeSwitcher } from "./theme-switcher";
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -48,6 +50,9 @@ export function Navbar() {
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
+        <NavbarItem>
+          <ThemeSwitcher />
+        </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
