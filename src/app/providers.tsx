@@ -14,8 +14,11 @@ export function Providers({ children }: Props) {
   const router = useRouter();
 
   return (
-    // @ts-expect-error navigate is not a function
-    <NextUIProvider navigate={router.push}>
+    <NextUIProvider
+      // @ts-expect-error navigate is not a function
+      navigate={router.push}
+      className="flex h-full w-full flex-col"
+    >
       <NextThemesProvider attribute="class">{children}</NextThemesProvider>
     </NextUIProvider>
   );
