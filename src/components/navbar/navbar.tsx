@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
 
 import {
-  Button,
   Link,
   NavbarBrand,
   NavbarContent,
@@ -11,14 +10,15 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
-  Navbar as NextUINavbar,
+  Navbar as NextUiNavbar,
 } from "@nextui-org/react";
 import { IconPackage } from "@tabler/icons-react";
 
+import AuthButton from "./auth-button";
 import { ThemeSwitcher } from "./theme-switcher";
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
     {
@@ -32,8 +32,12 @@ export function Navbar() {
   ];
 
   return (
-    <NextUINavbar onMenuOpenChange={setIsMenuOpen}>
+    <NextUiNavbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
         <NavbarBrand>
           <IconPackage />
           <p className="font-bold text-inherit">Next.js Starter</p>
@@ -48,25 +52,17 @@ export function Navbar() {
             </Link>
           </NavbarItem>
         ))}
-      </NavbarContent>
-      <NavbarContent justify="end">
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+          <AuthButton minimal={false} />
         </NavbarItem>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
       </NavbarContent>
       <NavbarMenu>
+        <NavbarMenuItem>
+          <ThemeSwitcher showLabel label="Theme" />
+        </NavbarMenuItem>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link className="w-full" href={item.href} size="lg">
@@ -74,7 +70,10 @@ export function Navbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <AuthButton />
+        </NavbarMenuItem>
       </NavbarMenu>
-    </NextUINavbar>
+    </NextUiNavbar>
   );
 }
