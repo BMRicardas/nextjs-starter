@@ -20,8 +20,6 @@ export async function createGuestbookEntry(
 ) {
   await requireAuth();
 
-  const session = await getServerSession(options);
-
   const submission = parseWithZod(formData, {
     schema: InsertGuestbookEntrySchema,
   });
@@ -30,8 +28,10 @@ export async function createGuestbookEntry(
     return submission.reply();
   }
 
+  const session = (await getServerSession(options))!;
+
   await db.insert(guestbookEntries).values({
-    userId: session.user?.id!,
+    userId: session.user.id,
     message: submission.value.message,
   });
 
