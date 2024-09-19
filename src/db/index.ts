@@ -3,5 +3,11 @@ import postgres from "postgres";
 
 import { env } from "@/env/server";
 
-const queryClient = postgres(env.DATABASE_URL);
-export const db = drizzle(queryClient);
+import * as schema from "./schema/index";
+
+export const client = postgres(env.DATABASE_URL, {
+  max: env.DB_MIGRATING ? 1 : undefined,
+});
+export const db = drizzle(client, {
+  schema,
+});
