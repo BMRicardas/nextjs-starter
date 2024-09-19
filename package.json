@@ -13,6 +13,7 @@
     "lint:format:fix": "npx prettier --write \"src/**\""
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.5.0",
     "@nextui-org/react": "^2.4.8",
     "@nextui-org/switch": "^2.0.34",
     "@t3-oss/env-nextjs": "^0.11.1",
