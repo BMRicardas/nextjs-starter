@@ -13,7 +13,7 @@ export const env = createEnv({
     DB_PASSWORD: z.string(),
     DB_NAME: z.string(),
     DB_PORT: z.coerce.number(),
-    DB_URL: z.string().url(),
+    DATABASE_URL: z.string().url(),
   },
   onValidationError: (error: ZodError) => {
     console.error(
