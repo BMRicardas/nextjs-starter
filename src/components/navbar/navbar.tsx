@@ -49,10 +49,12 @@ export function Navbar() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand>
-          <IconPackage />
-          <p className="font-bold text-inherit">Next.js Starter</p>
-        </NavbarBrand>
+        <a href="/">
+          <NavbarBrand>
+            <IconPackage />
+            <p className="font-bold text-inherit">Next.js Starter</p>
+          </NavbarBrand>
+        </a>
       </NavbarContent>
 
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
