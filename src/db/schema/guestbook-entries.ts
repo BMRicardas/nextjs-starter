@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
@@ -14,6 +15,16 @@ export const guestbookEntries = pgTable("guestbook_entries", {
     .defaultNow()
     .defaultNow(),
 });
+
+export const guestbookEntriesRelations = relations(
+  guestbookEntries,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [guestbookEntries.userId],
+      references: [users.id],
+    }),
+  })
+);
 
 export const InsertGuestbookEntrySchema = createInsertSchema(
   guestbookEntries
