@@ -6,8 +6,6 @@ import { options } from "@/config/auth";
 export default async function Profile() {
   const session = await getServerSession(options);
 
-  console.log({ session });
-
   return (
     <Card className="mx-auto mt-4 max-w-md">
       <CardBody>
