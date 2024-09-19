@@ -19,14 +19,18 @@ type Props = {
 export default function AuthButton({ minimal = true }: Props) {
   const { data, status } = useSession();
 
-  console.log({ data });
+  function handleSignOut() {
+    signOut({
+      callbackUrl: "/",
+    });
+  }
 
   if (status === "loading") return <CircularProgress />;
 
   if (status === "authenticated") {
     if (minimal) {
       return (
-        <Button color="success" variant="ghost" onClick={() => signOut()}>
+        <Button color="success" variant="ghost" onClick={handleSignOut}>
           Sign Out
         </Button>
       );
@@ -47,11 +51,7 @@ export default function AuthButton({ minimal = true }: Props) {
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{data.user?.email}</p>
             </DropdownItem>
-            <DropdownItem
-              key="signout"
-              color="danger"
-              onClick={() => signOut()}
-            >
+            <DropdownItem key="signout" color="danger" onClick={handleSignOut}>
               Sign Out
             </DropdownItem>
           </DropdownMenu>
@@ -61,7 +61,15 @@ export default function AuthButton({ minimal = true }: Props) {
   }
 
   return (
-    <Button color="danger" variant="ghost" onClick={() => signIn("google")}>
+    <Button
+      color="danger"
+      variant="ghost"
+      onClick={() =>
+        signIn("google", {
+          callbackUrl: "/profile",
+        })
+      }
+    >
       <IconBrandGoogle />
       Sign In
     </Button>
